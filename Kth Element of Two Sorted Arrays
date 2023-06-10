@@ -1,0 +1,28 @@
+int ninjaAndLadoos(vector<int> &a1, vector<int> &a2, int n, int m, int k) {
+    // Write your code here.
+
+    // if(k==0)return min(a1[0],a2[0]);
+
+ if(n>m)return ninjaAndLadoos(a2,a1,m,n,k); 
+       int l=max(0,k-m),h=min(n,k),mid;
+       
+       while(l<=h){
+             
+            mid=(l+h)>>1;
+            int l1=mid==0?-1000000:a1[mid-1];
+            int r1=mid==n?1000000:a1[mid];
+            
+            int l2=(k-mid)==0?-1000000:a2[k-mid-1];
+            int r2=(k-mid)==m?1000000:a2[k-mid];
+            
+            if(l1<=r2 and l2<=r1){
+                
+                return max(l1,l2);
+                
+            }  
+            else if(l1>r2)h=mid-1;
+            else
+            l=mid+1;
+       }
+       return -1;
+       }
