@@ -1,0 +1,54 @@
+double median(vector<int>& nums1, vector<int>& nums2) {
+	// Write your code here.
+	int n=nums1.size();
+     int m=nums2.size();
+     if(m<n) return median(nums2,nums1);
+    int l,r,mm;
+    int  l1,l2,r1,r2;
+    
+     
+      l=0;
+    int  t=(n+m+1)/2;
+      r=nums1.size();
+
+        while(l<=r)
+        {
+            // l1=INT_MIN,l2=INT_MIN;
+            // r1=INT_MAX,r2=INT_MAX;
+
+        mm=(l+r)/2;
+        if(mm==0)l1=INT_MIN;
+        else
+        l1=nums1[mm-1];
+
+        if(n-mm==0)r1=INT_MAX;
+        else
+        r1=nums1[mm];
+
+        if(t-mm==0)l2=INT_MIN;
+        else
+        l2=nums2[t-mm-1];
+
+        if((m-(t-mm))==0)
+        r2=INT_MAX;
+        
+        else
+        r2=nums2[t-mm];
+       
+       if((l1<=r2) and (l2<=r1)){
+           if((n+m)%2!=0)return (max(l1,l2));
+           else
+        return (double)(max(l1,l2)+(double)min(r1,r2))/(double)2;
+       }
+       else if(l1>r2)r=mm-1;
+       else
+       l=mm+1;
+        }
+
+     
+
+     
+       return 0.000; 
+        
+    
+}
