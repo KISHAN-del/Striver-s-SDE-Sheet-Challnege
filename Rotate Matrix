@@ -1,0 +1,57 @@
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+
+
+
+    // int n = mat.size();
+// int m = mat[0].size();
+int row=n,col=m;
+if(n==1||m==1)return;
+int ur = 0, lr = n - 1, rc = m - 1, lc = 0;
+int k=0;
+
+while ((ur <= lr) and (lc <= rc))
+{
+
+    for (int i = lc; i <= rc and ((ur <= lr) and (lc <= rc)); i++)
+    {
+        //  ans.push_back(mat[ur][i]);
+        swap(mat[k][k],mat[ur][i]);
+    }
+        ur++;
+
+        for (int i = ur; i <= lr and ((ur <= lr) and (lc <= rc)); i++)
+        {
+            //    ans.push_back(mat[i][rc]);
+            swap(mat[k][k],mat[i][rc]);
+        }
+        rc--;
+
+        for (int i = rc; i >= lc and ((ur <= lr) and (lc <= rc)); i--)
+        {
+            //    ans.push_back(mat[lr][i]);
+                        swap(mat[k][k],mat[lr][i]);
+
+        }
+        lr--;
+
+        for (int i = lr; i >= ur and ((ur <= lr) and (lc <= rc)); i--)
+        {
+            //    ans.push_back(mat[i][lc]);
+                        swap(mat[k][k],mat[i][lc]);
+
+        }
+        lc++;
+        k++;
+        row-=2;
+        col-=2;
+        if(row==1 || col==1)break;
+    }
+
+    return ;
+
+
+}
