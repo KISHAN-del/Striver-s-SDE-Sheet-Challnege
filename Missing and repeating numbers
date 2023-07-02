@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+
+pair<int,int> missingAndRepeating(vector<int> &nums, int n)
+{
+   
+           int xr=0;
+        for(int i=0;i<n;i++)
+        {
+            xr^=(nums[i]);
+            xr^=(i+1);
+            
+        }
+     // @@@@@@@@@######****=============*****#####!!!
+    //   n=1110100 
+    // n-1=1110011
+    // ~(n-1)=0001100
+    // n & ~(n-1)=100
+    
+    //  *** Since 4=100 and 3=011 except first set bit all become 1 when take n-1
+    //   AND when we take n and ~(n-1) all the same bit of n and n-1 become 0
+    // except last set bit  
+    
+        int setbit=(xr & (~(xr-1)));
+          int o=0,e=0;
+          
+          for(int i=0;i<n;i++){
+              if(setbit&(i+1)){
+              o^=(i+1);
+              }
+              else
+              e^=(i+1);
+
+          }
+          for(int i=0;i<n;i++){
+                           
+              if(setbit&nums[i]){
+                  o^=(nums[i]);
+              }
+              else
+                 e^=(nums[i]);
+              
+
+          }
+        //   cout<<e<<" "<<o<<endl;
+        vector<int>v(2,0);
+          for(auto x:nums){
+              if(x==o){
+                v[0]=o;
+                v[1]=e;
+
+                return {v[1],v[0]};
+              }
+          }
+          v[0]=e;
+          v[1]=o;
+        return {v[1],v[0]};
+        
+    	
+}
