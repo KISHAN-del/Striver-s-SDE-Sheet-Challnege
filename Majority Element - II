@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+vector<int> majorityElementII(vector<int> &nums)
+{
+     int n=nums.size();
+   int c1=0,c2=0,ans1,ans2;
+   for(int i=0;i<n;i++){
+     if(c1==0 and nums[i]!=ans2){
+       ans1=nums[i];
+       c1=1;
+     }
+//  Why this above because?
+//  case 1 1 1 2
+//  it will locate 1 to ans 1 and also 1 to ans 2 so we do first check of
+//  equlity with ans 1
+
+     else if(nums[i]==ans1)c1++;
+
+     else if(c2==0){
+       ans2=nums[i];
+       c2=1;
+     }
+
+     else if(nums[i]==ans2)c2++;
+
+     else{
+       c1--;c2--;
+     }
+
+
+
+   }
+    vector<int>res;
+    int i=0,j=0;
+    for(auto x:nums){
+    if(x==ans1)i++;
+    if(x==ans2)j++;
+    }
+    if(i>n/3)
+    res.push_back(ans1);
+    if(j>n/3)
+    res.push_back(ans2);
+    // if(c1>0)res.push_back(ans1);
+    // if(c2>0)res.push_back(ans2);
+
+  return res;
+
+}
