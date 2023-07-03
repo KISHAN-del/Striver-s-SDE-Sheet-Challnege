@@ -1,0 +1,28 @@
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+int findMajorityElement(int nums[], int n) {
+
+        // int n=nums.size();
+        int ans=nums[0],c=1;
+        for(int i=1;i<n;i++){
+          if (c == 0) {
+            ans = nums[i];
+            c++;
+          } else if (ans == nums[i])
+            c++;
+          else
+            c--;
+        }
+        int cnt=0;
+        for(int i=0;i<n;i++){
+          if(ans==nums[i])cnt++;
+        }
+        // cout<<c<<endl;
+        // if (c == 0 )
+        //   cout<< -1<<endl;
+        //   if(c==(n/2))return -1;
+        //   else
+        // if(c>=1)
+        return cnt>(n/2)?ans :-1;
+
+}
