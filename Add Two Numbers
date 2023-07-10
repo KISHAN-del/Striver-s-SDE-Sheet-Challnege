@@ -1,0 +1,88 @@
+/**
+ * Definition of linked list:
+ *
+ * class Node {
+ * public:
+ *      int data;
+ *      Node *next;
+ *      Node() {
+ *          this->data = 0;
+ *          this->next = NULL;
+ *      }
+ *      Node(int data) {
+ *          this->data = data;
+ *          this->next = NULL;
+ *      }
+ *      Node (int data, Node *next) {
+ *          this->data = data;
+ *          this->next = next;
+ *      }
+ * };
+ *
+ *************************************************************************/
+Node* reverse(Node* head) {
+        if(!head)return head;
+
+     Node* p=NULL;
+     Node* c=head;
+     Node* n=head->next;
+     while(c){
+      c->next=p;
+      p=c;
+      c=n;
+      if(n)
+      n=n->next;
+     }
+     return p;
+    }
+    
+Node *addTwoNumbers(Node *l1, Node *l2)
+{
+    // Write your code here.
+
+     
+     Node* h1=l1;
+     Node* h2=l2;
+
+    Node* d=new Node(0);
+    Node* cur=d;
+    int carry=0; 
+    int sm=0;
+    while(h1 and h2){
+        sm=h1->data+h2->data+carry;
+    Node* t=new Node(sm%10);
+        carry=sm/10;
+    cur->next=t;
+    cur=t;
+    h1=h1->next;
+    h2=h2->next;
+    }
+    while(h1){
+       sm=h1->data+carry;
+         Node* t=new Node(sm%10);
+        carry=sm/10;
+    cur->next=t;
+    cur=t;
+    h1=h1->next;
+    }
+    while(h2){
+       sm=h2->data+carry;
+        Node* t=new Node(sm%10);
+        carry=sm/10;
+    cur->next=t;
+    cur=t;
+    h2=h2->next;
+    }
+
+    if(carry>0){
+    Node* t=new Node(carry);
+     cur->next=t;
+    cur=t;
+    }
+Node* hh=d->next;
+d->next=NULL;
+// Node* temp=reverse(hh); 
+     return hh;
+
+    }
+
