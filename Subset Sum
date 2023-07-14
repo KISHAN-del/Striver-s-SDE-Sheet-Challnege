@@ -1,0 +1,40 @@
+
+
+
+void help(vector<int>nums,int n,vector<int>&t){
+              if(n==0)
+                {
+            t.push_back(0);
+            // return t;.
+			return;
+                }
+                
+        //  for(auto x:t)cout<<x<<" ";
+        //  cout<<endl;
+         
+         help(nums,n-1,t);
+		 vector<int>ans=t;
+         for(auto x:ans){
+        //  if(x==0)continue;
+        //  else{
+           int u=x+nums[n-1];
+             t.push_back(u);
+        //  }
+             
+         }
+        //  t.push_back(nums[n-1]);
+        //  for(auto x:t)cout<<x<<" ";
+        //  cout<<endl;
+        //  cout<<"j"<<endl;
+         return ;
+}
+vector<int> subsetSum(vector<int> &nums){
+	// Write your code here.
+	vector<int>t;
+	sort(nums.begin(),nums.end());
+	help(nums,nums.size(),t);
+	sort(t.begin(),t.end());
+
+     return t;    
+        	
+}
